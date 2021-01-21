@@ -1,6 +1,6 @@
-prueba\main.class
 CN\CN_Proveedor.class
 dao\ProveedorDao.class
 CN\CN_Proveedor_impl.class
 dto\Proveedor.class
+prueba\Principal.class
 dao\ProveedorDaoImpl.class

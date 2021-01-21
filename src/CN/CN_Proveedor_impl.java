@@ -1,41 +1,47 @@
 package CN;
 
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
 import dto.Proveedor;
 
 public class CN_Proveedor_impl implements CN_Proveedor{
 	
 	@Override
-	public void procesarListadoEnFich(List<Proveedor> listadoProv) {
+	public void procesarListadoEnFich(List<Proveedor> listadoProv) {		
 		FileWriter writer = null;
 		//Definimos la ruta de salida del fichero
-		String path = "C:\\archivoSalida\\proveedores.txt";
+		String path = "../Salida/proveedores.txt";
 		try {
+			File file =  new File(path);
+			file.createNewFile();
 			//Abrimos un nuevo escritor de fichero con un buffer de entrada
-			writer = new FileWriter(path);
-			BufferedWriter buffer = new BufferedWriter(writer);
+			writer = new FileWriter(file);
 			StringBuilder builder = new StringBuilder();
 			
 			if(listadoProv != null && listadoProv.size()>0) {
+				DateFormat dtf =  new SimpleDateFormat("dd/MM/yyyy");
 				//Recorremos el listado completo agregando a un Stringbuilder los datos de cada proveedor
 				listadoProv.stream().forEach(prov -> {			
 					builder.append(prov.getIdProveedor()+",");
 					builder.append(prov.getNombre()+",");
-					builder.append(prov.getFechaAlta()+",");
-					builder.append(prov.getIdCliente()+",");
+					builder.append(dtf.format(prov.getFechaAlta())+",");
+					builder.append(prov.getIdCliente());
 					builder.append(" \n");		
 				});
 				
 				try {
-					buffer.write(builder.toString());
+					writer.write(builder.toString());
+					writer.flush();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 					
-				buffer.close();
 				System.out.println("Archivo guardado.");
 			}else {
 				//En caso de devolver una lista vacia notificamos un mensaje.

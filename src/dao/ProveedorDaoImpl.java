@@ -40,9 +40,12 @@ public class ProveedorDaoImpl implements ProveedorDao{
 	public List<Proveedor> findListById(Integer id) {
 		List<Proveedor> listado = new ArrayList<Proveedor>();
 		try {
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://servidor/IBMConfirming?useServerPrepStmts=true", "usuario", "password");
-			String consulta = "SELECT * FROM PROVEEDOR WHERE IDCLIENTE = ?";
-			PreparedStatement query = conexion.prepareStatement(consulta,id);
+			
+			 Class.forName("com.mysql.jdbc.Driver");
+			
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7388467?useSSL=false", "sql7388467", "8wtjEKacDT");
+			String consulta = "SELECT * FROM PROVEEDOR WHERE IDCLIENTE = "+id;
+			PreparedStatement query = conexion.prepareStatement(consulta);
 			ResultSet set = query.executeQuery();
 			
 			while(set.next()) {
@@ -55,7 +58,10 @@ public class ProveedorDaoImpl implements ProveedorDao{
 				listado.add(prov);
 			}					
 		} catch (SQLException e) {
-			System.err.format("Error conexion SQL", e.getSQLState(), e.getMessage());
+			System.err.format("Error conexion SQL \n", e.getSQLState(), e.getMessage());
+			System.out.println("Error conexion SQL \n"+ e.getSQLState() +" "+ e.getMessage());
+		} catch (ClassNotFoundException ex) {
+		    System.out.println("Error al registrar el driver de MySQL: " + ex);
 		}
 				
 		return listado;

@@ -10,11 +10,11 @@ Para ejecutar el proyecto debemos seguir estos pasos:
 	1. Acceder a la consola de CMD.
 	2. Ubicarnos en la raiz del proyecto y ejecutar mvn clean install.
 	3. Ubicarnos en el Jar ejecutable del proyecto dentro de la carpeta target.
-	4. Lanzar el comando IBMConfirming(version) IDCLIENTE(parámetro de entrada).
+	4. Lanzar el comando java -jar IBMConfirming-1.jar IDCLIENTE(parámetro de entrada, int).
 
 ## Ruta de salida 📋
 
-Los ficheros serán generados en C:\\archivoSalida\\proveedores.txt
+Los ficheros serán generados en Salida\\proveedores.txt dentro del directorio del proyecto.
 
 
 ## Dependencias 🛠️

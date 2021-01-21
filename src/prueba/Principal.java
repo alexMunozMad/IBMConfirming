@@ -9,22 +9,21 @@ import dao.ProveedorDao;
 import dao.ProveedorDaoImpl;
 import dto.Proveedor;
 
-public class main {
+public class Principal {
 
-	public static void main(Integer[] args) {
+	public static void main(String[] args) {
 		
 		ProveedorDao provDao = new ProveedorDaoImpl();
 		List<Proveedor> listadoProv = new ArrayList<Proveedor>();
 		CN_Proveedor cnProveedor = new CN_Proveedor_impl();
-		
-		if(args[0] != null) {
+		if(args != null && args[0] != "" && args[0].matches("^[0-9]+$")) {
 			//invocamos la busqueda de la lista de proveedores segun el parametro de entrada
-			listadoProv = provDao.findListById(args[0]);
+			listadoProv = provDao.findListById(Integer.parseInt(args[0]));
 			
 			//aplicamos la logica de procesamiento de datos al listado recuperado.
 			cnProveedor.procesarListadoEnFich(listadoProv);
 		}else{
-			System.out.println("Se debe introducir un argumento para la ejecución. FIN.");
+			System.out.println("Se debe introducir un argumento válido para la ejecución. FIN.");
 		}
 
 	}
