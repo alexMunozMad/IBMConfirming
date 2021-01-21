@@ -8,8 +8,9 @@ Proyecto a modo de prueba para IBM.
 Para ejecutar el proyecto debemos seguir estos pasos:
 
 	1. Acceder a la consola de CMD.
-	2. Ubicarnos en el Jar ejecutable del proyecto.
-	3. Lanzar el  comando IBMConfirming IDCLIENTE(parámetro de entrada).
+	2. Ubicarnos en la raiz del proyecto y ejecutar mvn clean install.
+	2. Ubicarnos en el Jar ejecutable del proyecto dentro de la carpeta target.
+	3. Lanzar el comando IBMConfirming(version) IDCLIENTE(parámetro de entrada).
 
 ## Ruta de salida 📋
 
